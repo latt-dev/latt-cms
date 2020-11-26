@@ -1,0 +1,33 @@
+<div class="latt-paths">
+  <mat-toolbar><span>Paths</span></mat-toolbar>
+
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <ul class="latt-viewport-padding">
+      <li *ngFor="let path of paths$ | async">
+        <mat-card fxLayout="row" fxLayoutAlign="start center">
+          <img *ngIf="path.icon" class="path-logo" src="{{ path.icon }}" alt="{{ path.name }} icon" />
+          <div class="path-name mat-body-strong">{{ path.name }}</div>
+          <mat-chip-list>
+            <mat-chip color="accent" selected>{{
+              path.courses.length ? path.courses.length + ' courses' : 'no courses yet'
+            }}</mat-chip>
+          </mat-chip-list>
+          <span fxFlex></span>
+          <button mat-icon-button aria-label="edit path" (click)="editPath(path.pathId)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="delete path" (click)="deletePath(path.pathId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card>
+      </li>
+    </ul>
+    <button class="add-path-fab" mat-fab aria-label="Create Path" (click)="createPath()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-template #loading>
+    <latt-loading></latt-loading>
+  </ng-template>
+</div>

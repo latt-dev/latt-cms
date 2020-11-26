@@ -1,0 +1,40 @@
+<div class="latt-root" *ngrxLet="isAuthenticated$ as authenticated">
+  <mat-toolbar color="primary" #toolbar>
+    <button
+      mat-icon-button
+      aria-label="navigation menu"
+      (click)="chooseNavItem()"
+      *ngIf="(mobileResolutionMatcher$ | async).matches"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ toolbarTitle }}</span>
+
+    <span fxFlex></span>
+
+    <button mat-button (click)="handleAuthState(authenticated)">
+      {{ authenticated ? 'Sign Out' : 'Sign In' }}
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container #sidenavContainer>
+    <mat-sidenav #sidenav [mode]="isMobileResolution ? 'over' : 'side'" [opened]="!isMobileResolution">
+      <mat-nav-list>
+        <a
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          mat-list-item
+          *ngFor="let nav of navEntities"
+          [routerLink]="nav.path"
+          routerLinkActive="latt-list-item-active"
+          (click)="chooseNavItem()"
+          [disabled]="nav.restricted && !authenticated"
+          ><div class="nav-item">{{ nav.name }}</div></a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

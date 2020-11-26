@@ -1,0 +1,51 @@
+<div class="latt-auth-dialog" fxLayout="column" fxLayoutAlign="start center" *ngrxLet="isExistingUser$ as isExisting">
+  <h1 mat-dialog-title>Welcome {{ isExisting ? 'Back' : 'On Board' }}!</h1>
+  <div mat-dialog-content>
+    <mat-tab-group mat-align-tabs="center" dynamicHeight (selectedTabChange)="switchAuthMode($event)">
+      <mat-tab label="Sign In" [formGroup]="signInForm">
+        <div class="latt-viewport-padding" fxLayout="column" fxLayoutAlign="start center">
+          <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="userName" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" />
+          </mat-form-field>
+        </div>
+      </mat-tab>
+      <mat-tab label="Sign Up" [formGroup]="signUpForm">
+        <div class="latt-viewport-padding" fxLayout="column" fxLayoutAlign="start center">
+          <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="userName" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input matInput formControlName="confirmPassword" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Admin Secret Code</mat-label>
+            <input matInput formControlName="code" />
+          </mat-form-field>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button
+      mat-button
+      (click)="onConfirm(isExisting)"
+      mat-raised-button
+      color="accent"
+      [disabled]="isExisting ? signInForm.invalid : signUpForm.invalid"
+    >
+      Confirm
+    </button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="latt-articles">
+  <mat-toolbar><span>Articles</span></mat-toolbar>
+
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <ul class="latt-viewport-padding">
+      <li *ngFor="let article of articles$ | async">
+        <mat-card fxLayout="row" fxLayoutAlign="start center">
+          <div class="article-name mat-body-strong">{{ article.name }}</div>
+          <mat-chip-list *ngIf="article.course">
+            <mat-chip color="accent" selected>{{ article.course.name }}</mat-chip>
+          </mat-chip-list>
+          <span fxFlex></span>
+          <button mat-icon-button aria-label="edit article" (click)="editArticle(article.articleId)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="delete article" (click)="deleteArticle(article.articleId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card>
+      </li>
+    </ul>
+    <button class="add-article-fab" mat-fab aria-label="Create Article" (click)="createArticle()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-template #loading>
+    <latt-loading></latt-loading>
+  </ng-template>
+</div>

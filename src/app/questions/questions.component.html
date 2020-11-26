@@ -1,0 +1,30 @@
+<div class="latt-questions">
+  <mat-toolbar><span>Questions</span></mat-toolbar>
+
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <ul class="latt-viewport-padding">
+      <li *ngFor="let question of questions$ | async">
+        <mat-card fxLayout="row" fxLayoutAlign="start center">
+          <div class="question-text mat-body-strong">{{ question.text }}</div>
+          <mat-chip-list *ngIf="question.course">
+            <mat-chip color="accent" selected>{{ question.course.name }}</mat-chip>
+          </mat-chip-list>
+          <span fxFlex></span>
+          <button mat-icon-button aria-label="edit question" (click)="editQuestion(question.questionId)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="delete question" (click)="deleteQuestion(question.questionId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card>
+      </li>
+    </ul>
+    <button class="add-question-fab" mat-fab aria-label="Create Question" (click)="createQuestion()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-template #loading>
+    <latt-loading></latt-loading>
+  </ng-template>
+</div>

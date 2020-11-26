@@ -1,0 +1,57 @@
+<div class="latt-article">
+  <mat-toolbar>
+    <button mat-icon-button aria-label="back to article list" (click)="navigateBack()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <span>{{ pageType$ | async }} Article</span>
+    <span fxFlex></span>
+    <button mat-button color="accent" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="accent" (click)="save()" [disabled]="form.invalid || form.pristine">Save</button>
+  </mat-toolbar>
+
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <div class="latt-viewport-padding" [formGroup]="form" *ngIf="form">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Article Title</mat-label>
+          <input matInput placeholder="Enter the article title" formControlName="name" />
+          <mat-error *ngIf="form.controls['name'].invalid">You must enter a value</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Article Description</mat-label>
+          <input matInput placeholder="Enter the article description" formControlName="description" />
+          <mat-error *ngIf="form.controls['description'].invalid">You must enter a value</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Article Reading Duration</mat-label>
+          <input matInput placeholder="Enter approximate reading duration" formControlName="duration" />
+          <mat-error *ngIf="form.controls['duration'].invalid">You must enter a value</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Article Url</mat-label>
+          <input matInput placeholder="Enter the article URL" formControlName="url" />
+          <mat-error *ngIf="form.controls['url'].invalid">You must enter a value</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Course</mat-label>
+          <mat-select formControlName="course" [compareWith]="courseItemCompareFn">
+            <mat-option *ngFor="let course of courseList$ | async" [value]="course">{{ course.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <latt-loading></latt-loading>
+  </ng-template>
+</div>

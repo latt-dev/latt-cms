@@ -1,0 +1,30 @@
+<div class="latt-labs">
+  <mat-toolbar><span>Labs</span></mat-toolbar>
+
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <ul class="latt-viewport-padding">
+      <li *ngFor="let lab of labs$ | async">
+        <mat-card fxLayout="row" fxLayoutAlign="start center">
+          <div class="lab-name mat-body-strong">{{ lab.name }}</div>
+          <mat-chip-list *ngIf="lab.course">
+            <mat-chip color="accent" selected>{{ lab.course.name }}</mat-chip>
+          </mat-chip-list>
+          <span fxFlex></span>
+          <button mat-icon-button aria-label="edit lab" (click)="editLab(lab.labId)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="delete lab" (click)="deleteLab(lab.labId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card>
+      </li>
+    </ul>
+    <button class="add-lab-fab" mat-fab aria-label="Create Lab" (click)="createLab()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-template #loading>
+    <latt-loading></latt-loading>
+  </ng-template>
+</div>

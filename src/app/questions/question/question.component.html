@@ -1,0 +1,72 @@
+<div class="latt-question">
+  <mat-toolbar>
+    <button mat-icon-button aria-label="back to question list" (click)="navigateBack()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <span>{{ pageType$ | async }} Question</span>
+    <span fxFlex></span>
+    <button mat-button color="accent" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="accent" (click)="save()" [disabled]="form.invalid || form.pristine">Save</button>
+  </mat-toolbar>
+
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <div class="latt-viewport-padding" [formGroup]="form" *ngIf="form">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Question Text</mat-label>
+          <input matInput placeholder="Formulate New Question" formControlName="text" />
+          <mat-error *ngIf="form.controls['text'].invalid">You must enter a value</mat-error>
+        </mat-form-field>
+      </p>
+
+      <ng-container formArrayName="options" *ngFor="let option of options.controls; index as i">
+        <ng-container [formGroupName]="i">
+          <p fxLayout="row" fxLayoutAlign="start center">
+            <mat-select formControlName="optionId" style="width: 2em;">
+              <mat-option *ngFor="let option of optionIds" [value]="option">{{ option }}</mat-option>
+            </mat-select>
+            <mat-form-field appearance="outline">
+              <mat-label>Answer</mat-label>
+              <input matInput placeholder="Enter Answer Text" formControlName="text" />
+              <mat-error *ngIf="form.controls['text'].invalid">You must enter a value</mat-error>
+            </mat-form-field>
+            <button mat-icon-button aria-label="delete answer" (click)="removeOption(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              *ngIf="i === options.controls.length - 1"
+              mat-icon-button
+              aria-label="add answer"
+              (click)="addOption()"
+              [disabled]="i === 3"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </p>
+        </ng-container>
+      </ng-container>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Right Answer</mat-label>
+          <mat-select formControlName="answer">
+            <mat-option *ngFor="let option of optionIds" [value]="option">{{ option }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Course</mat-label>
+          <mat-select formControlName="course" [compareWith]="courseItemCompareFn">
+            <mat-option *ngFor="let course of courseList$ | async" [value]="course">{{ course.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <latt-loading></latt-loading>
+  </ng-template>
+</div>

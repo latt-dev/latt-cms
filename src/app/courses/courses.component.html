@@ -1,0 +1,39 @@
+<div class="latt-courses">
+  <mat-toolbar><span>Courses</span></mat-toolbar>
+
+  <ng-container *ngIf="loaded$ | async; else loading">
+    <ul class="latt-viewport-padding">
+      <li *ngFor="let course of courses$ | async">
+        <mat-card fxLayout="row" fxLayoutAlign="start center">
+          <img *ngIf="course.icon" class="course-logo" src="{{ course.icon }}" alt="{{ course.name }} icon" />
+          <div class="course-name mat-body-strong">{{ course.name }}</div>
+          <mat-chip-list>
+            <mat-chip color="accent" selected>{{
+              course.articles.length ? course.articles.length + ' articles' : 'no articles yet'
+            }}</mat-chip>
+            <mat-chip color="accent" selected>{{
+              course.labs.length ? course.labs.length + ' labs' : 'no labs yet'
+            }}</mat-chip>
+            <mat-chip color="accent" selected>{{
+              course.questions.length ? course.questions.length + ' questions' : 'no questions yet'
+            }}</mat-chip>
+          </mat-chip-list>
+          <span fxFlex></span>
+          <button mat-icon-button aria-label="edit course" (click)="editCourse(course.courseId)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="delete course" (click)="deleteCourse(course.courseId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card>
+      </li>
+    </ul>
+    <button class="add-course-fab" mat-fab aria-label="Create Course" (click)="createCourse()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-template #loading>
+    <latt-loading></latt-loading>
+  </ng-template>
+</div>
