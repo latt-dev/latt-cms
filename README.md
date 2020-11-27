@@ -1,6 +1,6 @@
 # Latt CMS
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/778c8b3e-56e9-4648-94f2-494f221411b5/deploy-status)](https://app.netlify.com/sites/latt-cms/deploys) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Content Management System for Latt App driving creating/updating predefined paths, courses, lessons and quizzes
 
