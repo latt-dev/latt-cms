@@ -22,7 +22,7 @@
       <ng-container formArrayName="options" *ngFor="let option of options.controls; index as i">
         <ng-container [formGroupName]="i">
           <p fxLayout="row" fxLayoutAlign="start center">
-            <mat-select formControlName="optionId" style="width: 2em;">
+            <mat-select formControlName="optionId" style="width: 2em">
               <mat-option *ngFor="let option of optionIds" [value]="option">{{ option }}</mat-option>
             </mat-select>
             <mat-form-field appearance="outline">
