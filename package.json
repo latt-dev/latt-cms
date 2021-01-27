@@ -29,7 +29,7 @@
     "@angular/router": "~10.0.10",
     "@ngneat/reactive-forms": "^1.3.1",
     "@ngrx/component": "^10.0.0",
-    "dayjs": "^1.8.36",
+    "dayjs": "^1.10.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
