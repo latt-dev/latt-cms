@@ -53,7 +53,7 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     AuthModule,
     ReactiveComponentModule,
     AuthDialogModule,

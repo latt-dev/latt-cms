@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AuthDialogComponent } from './auth-dialog.component';
 import { MaterialModule } from '../material.module';
@@ -8,16 +8,18 @@ describe('AuthDialogComponent', () => {
   let component: AuthDialogComponent;
   let fixture: ComponentFixture<AuthDialogComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [MaterialModule],
-      providers: [
-        { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: {} },
-      ],
-      declarations: [AuthDialogComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [MaterialModule],
+        providers: [
+          { provide: MatDialogRef, useValue: {} },
+          { provide: MAT_DIALOG_DATA, useValue: {} },
+        ],
+        declarations: [AuthDialogComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthDialogComponent);
