@@ -11,7 +11,8 @@
           "inlineStyle": true,
           "inlineTemplate": true,
           "export": true,
-          "flat": true
+          "flat": true,
+          "style": "scss"
         }
       },
       "root": "",
