@@ -10,13 +10,15 @@ describe('LabComponent', () => {
   let component: LabComponent;
   let fixture: ComponentFixture<LabComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [LabsService, CoursesService],
-      declarations: [LabComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule, HttpClientTestingModule],
+        providers: [LabsService, CoursesService],
+        declarations: [LabComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LabComponent);

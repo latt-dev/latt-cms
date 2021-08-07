@@ -6,11 +6,13 @@ describe('ConfirmDeletionDialogComponent', () => {
   let component: ConfirmDeletionDialogComponent;
   let fixture: ComponentFixture<ConfirmDeletionDialogComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ConfirmDeletionDialogComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ConfirmDeletionDialogComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ConfirmDeletionDialogComponent);

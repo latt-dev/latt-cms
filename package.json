@@ -8,10 +8,10 @@
   "scripts": {
     "ng": "ng",
     "config": "ts-node ./scripts/setenv.ts",
-    "start": "npm run config -- --environment=dev && ng serve",
+    "start": "npm run config -- --environment=dev && ng serve --hmr",
     "build": "npm run config -- --environment=prod && ng build",
     "test": "ng test",
-    "test-ci": "ng test --browsers=ChromeHeadlessCI",
+    "test-ci": "ng test --watch=false --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "format": "prettier --write ./src/app",
     "e2e": "ng e2e"

@@ -10,13 +10,15 @@ describe('PathComponent', () => {
   let component: PathComponent;
   let fixture: ComponentFixture<PathComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule],
-      declarations: [PathComponent],
-      providers: [PathsService, CoursesService],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule, HttpClientTestingModule],
+        declarations: [PathComponent],
+        providers: [PathsService, CoursesService],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PathComponent);
