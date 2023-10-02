@@ -4,6 +4,10 @@
 
 Content Management System for Latt App driving creating/updating predefined paths, courses, lessons and quizzes
 
+## Important prerequisite note
+
+Many packages are obsolete now (2023) and require older (14) Node version to be installed, `.nvmrc` states that explicitly (if you use NVM).
+
 ## Quick Start
 
 1. `npm install`
@@ -38,10 +42,8 @@ LATT_DEV_API_URL=LocalBackEndAPIServerUrl
 LATT_PROD_API_URL=ProductionBackEndAPIServerUrl
 ```
 
-## Deployment
-
-_- temporarily not exposed publically -_
+See `.env.example` file for local dev parameters example.
 
 ## Contributing
 
-Thank you for your interest in contributing to Latt CMS! There are many ways to contribute to this project. Get started [here](https://github.com/latt-dev/latt-cms/blob/master/.github/CONTRIBUTING.md).
+Thank you for your interest in contributing to Latt. Though there's no active open development process currently, there are some ways to contribute to this project if you really fancy to. Get started [here](https://github.com/latt-dev/latt-cms/blob/master/.github/CONTRIBUTING.md).
